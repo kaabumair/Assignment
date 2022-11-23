@@ -28,9 +28,8 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'styles')));
 
-// http://localhost:3000/
+//dasfads
 app.get(TODO_BASE_ROUTE, function(request, response) {
-	// Render login template
 	response.sendFile(path.join(__dirname + '/login.html'));
 });
 
