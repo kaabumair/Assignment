@@ -1,0 +1,21 @@
+{
+  "name": "logincrud",
+  "version": "1.0.0",
+  "description": "",
+  "main": "login.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "fetch": "^1.1.0",
+    "mysql": "^2.18.1",
+    "node-fetch": "^3.3.0",
+    "pg": "^8.8.0",
+    "pool": "^0.4.1"
+  }
+}
