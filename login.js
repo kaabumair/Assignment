@@ -5,7 +5,8 @@ const pool = require('./dbConn')
 const TodoRepo = require('./repository/todorepository')
 const TodoController = require('./controllers/todoController')
 const CheckBasicToken = require('./middleware/testmiddleware')
-const Validation = require('./middleware/testValidationmiddleware')
+const Validation = require('./middleware/testValidationmiddleware');
+const { response } = require('express');
 const todoController = new TodoController()
 const TODO_BASE_ROUTE = '/'
 const TODO_GET_TASKS = '/getall'
@@ -41,11 +42,16 @@ app.post('/deleteuser', todoController.deleteUser)
 
 app.post(TODO_BASE_ROUTE, CheckBasicToken, Validation, todoController.createTask)
 
-app.get(TODO_GET_TASKS, todoController.getAll)
+app.get(TODO_GET_TASKS , todoController.getAll)
 
 app.delete(TODO_DELETE_ROUTE, todoController.deleteTask)
 
-app.put(TODO_BASE_ROUTE + 'update', todoController.UpdateTask)
+app.get('/updatetask', function(request, response) {
+	response.sendFile(path.join(__dirname + '/update.html'));
+});
+app.post('/update', todoController.UpdateTask)
+
+
 
 // app.put(TODO_BASE_ROUTE + 'updatedesc', todoController.UpdateDesc)
 

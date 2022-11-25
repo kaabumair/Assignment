@@ -15,8 +15,8 @@ class TodoRepo {
        return await pool.query('delete from public.todolist where task = $1', [task])
     }
 
-    async Update(task,done,id){
-        return await pool.query('Update public.todoList SET task = $1, done = $2, description = $3 where id = $3', [task, done, description, id])
+    async Update(task,done,description,id){
+        return await pool.query('Update public.todoList SET task = $1, done = $2, description = $3 where id = $4', [task, done, description, id])
 
     }
     
