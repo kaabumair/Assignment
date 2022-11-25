@@ -6,20 +6,14 @@
 		<title>LUpdate tasks</title>
         <!-- the form awesome library is used to add icons to our form -->
 		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.1/css/all.css">
-        <link href="updatetask.css" rel="stylesheet" type="text/css">
+        <link href="/styles/updatetask.css" rel="stylesheet" type="text/css">
 	</head>
 	<body>
 		<div class="login">
 			<h1>Update Task through Here</h1>
-            <form action="http://localhost:3000/update" method="get" target ="_blank">
+            <form action="http://localhost:3000/deletetask" method="get" target ="_blank">
                 <label for="taskid">Task id:</label>
                 <input type="number" name="id">
-                <label for="taskname">Update Task:</label>
-                <input type="text" name="task">
-                <label for="done status">Done status:</label>
-                <input type="text" name="done"> 
-                <label for="description">task description</label>
-                <input type="text" name="description">
                 <input type="submit" formmethod="post" value="Submit using POST">
             </form>
 		</div>

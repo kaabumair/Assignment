@@ -28,11 +28,17 @@ app.use(session({
 
 
 app.use(express.static(path.join(__dirname, 'styles')));
+app.use(express.static(path.join(__dirname, 'updatetask')));
 
 //dasfads
 app.get(TODO_BASE_ROUTE, function(request, response) {
 	response.sendFile(path.join(__dirname + '/login.html'));
 });
+
+app.get('/delete', function(request, response) {
+	response.sendFile(path.join(__dirname + '/delete.html'));
+});
+
 
 app.post(TODO_AUTH_ROUTE, todoController.BasicAuth)
 	
