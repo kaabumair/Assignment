@@ -1,7 +1,9 @@
 const { arrayBuffer } = require('stream/consumers');
-const pool = require('../dbConn')
+const pool = require('../dbConn');
+const Basic_token = require('../middleware/basictoken');
 const TodoRepo = require('../repository/todorepository')
-const Basic_token = require('../middleware/basictoken')
+const http = require('http');
+
 
 class TodoController{
     async getAll(request, response) {
@@ -31,31 +33,28 @@ class TodoController{
 
     async UpdateTask(request,response){
         const todoRepo = new TodoRepo();
-        let res = await todoRepo.Update(request.body.task, request.body.done, request.body.id)
+        let res = await todoRepo.Update(request.body.task, request.body.done, request.body.description, request.body.id)
         response.json({
             "status" : "task Updated"
         })
     }
 
-    async UpdateDesc(request, response){
-        const todoRepo = new TodoRepo();
-        let res = await todoRepo.UpdateDescription(request.body.description, request.body.id)
-        response.json({
-            "status" : "task's Description Updated"
-        })
+    // async UpdateDesc(request, response){
+    //     const todoRepo = new TodoRepo();
+    //     let res = await todoRepo.UpdateDescription(request.body.description, request.body.id)
+    //     response.json({
+    //         "status" : "task's Description Updated"
+    //     })
 
-    }
+    // }
 
     async TaskStatus(request, response){
         const todoRepo = new TodoRepo();
         let res = await todoRepo.TS()
 
-        response.json({
-            "status" : "check console"
-        })
+        response.send(res.rows[0])
 
         console.log(`${JSON.stringify(res.rows[0], '{}', 2)}`);
-
     }
 
     async BasicAuth(request, response){
@@ -89,12 +88,14 @@ class TodoController{
         //     }
         // }
 
-        const BT = new Basic_token()
-        
-        let token_result = await BT.generateToken(6)
-        
+        const bt = new Basic_token()
+
+        let token = await bt.generateToken(6)
+        await response.setHeader("token", token); 
+
+
         if(user == request.body.username && pass == request.body.password){
-            response.send("Welcome to your site! " + user + "your token to create tasks is " + token_result)
+            response.send("Welcome to your site! " + user + "your token to create tasks is " + token)
             console.log("User logged in")
         }
 
@@ -102,9 +103,11 @@ class TodoController{
             response.send("Invalid username and password")
             console.log("Invalid Login")
         }
-
     }
 
+    async reqtoken(token){
+        return token;
+    }
 
     async createUser(request, response){
         const todoRepo = new TodoRepo();

@@ -16,13 +16,13 @@ class TodoRepo {
     }
 
     async Update(task,done,id){
-        return await pool.query('Update public.todoList SET task = $1, done = $2 where id = $3', [task, done, id])
+        return await pool.query('Update public.todoList SET task = $1, done = $2, description = $3 where id = $3', [task, done, description, id])
 
     }
     
-    async UpdateDescription(description, id){
-        return await pool.query('Update public.todoList SET description = $1 where id = $2', [description, id])
-    }
+    // async UpdateDescription(description, id){
+    //     return await pool.query('Update public.todoList SET description = $1 where id = $2', [description, id])
+    // }
 
     async TS(){
         let result = await pool.query(`select count(*) as total,

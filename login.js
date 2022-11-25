@@ -45,11 +45,11 @@ app.get(TODO_GET_TASKS, todoController.getAll)
 
 app.delete(TODO_DELETE_ROUTE, todoController.deleteTask)
 
-app.put(TODO_BASE_ROUTE + '/update', todoController.UpdateTask)
+app.put(TODO_BASE_ROUTE + 'update', todoController.UpdateTask)
 
-app.put(TODO_BASE_ROUTE + '/updatedesc', todoController.UpdateDesc)
+// app.put(TODO_BASE_ROUTE + 'updatedesc', todoController.UpdateDesc)
 
-app.get(TODO_BASE_ROUTE + '/pending', todoController.TaskStatus)
+app.get(TODO_BASE_ROUTE + 'pending', todoController.TaskStatus)
 
 // http://localhost:3000/auth
 
