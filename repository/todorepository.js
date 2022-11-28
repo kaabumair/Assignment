@@ -11,8 +11,8 @@ class TodoRepo {
         , [task, done, description]);
     }
 
-    async deleteTaskRepo(task){
-       return await pool.query('delete from public.todolist where task = $1', [task])
+    async deleteTaskRepo(id){
+       return await pool.query('delete from public.todolist where id= $1', [id])
     }
 
     async Update(task,done,description,id){

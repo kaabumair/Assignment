@@ -25,7 +25,7 @@ class TodoController{
 
     async deleteTask(request, response){
         const todoRepo = new TodoRepo();
-        let res = await todoRepo.deleteTaskRepo(request.body.task)
+        let res = await todoRepo.deleteTaskRepo(request.body.id)
         response.json({
             "status" : "task deleted"
         })

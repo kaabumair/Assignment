@@ -8,7 +8,7 @@ class Basic_token {
         return token;
     }
     
-    
+
 }
 
 //const BT = new Basic_token()

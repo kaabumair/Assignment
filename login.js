@@ -29,8 +29,10 @@ app.use(session({
 
 app.use(express.static(path.join(__dirname, 'styles')));
 app.use(express.static(path.join(__dirname, 'updatetask')));
-
+app.use(express.static(path.join(__dirname, 'deletetask')));
 //dasfads
+
+
 app.get(TODO_BASE_ROUTE, function(request, response) {
 	response.sendFile(path.join(__dirname + '/login.html'));
 });
@@ -50,7 +52,7 @@ app.post(TODO_BASE_ROUTE, CheckBasicToken, Validation, todoController.createTask
 
 app.get(TODO_GET_TASKS , todoController.getAll)
 
-app.delete(TODO_DELETE_ROUTE, todoController.deleteTask)
+app.post(TODO_DELETE_ROUTE, todoController.deleteTask)
 
 app.get('/updatetask', function(request, response) {
 	response.sendFile(path.join(__dirname + '/update.html'));
