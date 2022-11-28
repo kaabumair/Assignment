@@ -44,11 +44,14 @@ app.get('/delete', function(request, response) {
 
 app.post(TODO_AUTH_ROUTE, todoController.BasicAuth)
 	
+app.get('/newuser', function(request, response) {
+	response.sendFile(path.join(__dirname + '/createuser.html'));
+});
 
 app.post('/createuser', todoController.createUser)
-app.post('/deleteuser', todoController.deleteUser)
+app.post('/deleteuser', CheckBasicToken, Validation, todoController.deleteUser)
 
-app.post(TODO_BASE_ROUTE, CheckBasicToken, Validation, todoController.createTask)
+app.post(TODO_BASE_ROUTE, todoController.createTask)
 
 app.get(TODO_GET_TASKS , todoController.getAll)
 
