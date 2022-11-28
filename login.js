@@ -28,6 +28,7 @@ app.use(session({
 
 
 app.use(express.static(path.join(__dirname, 'styles')));
+app.use(express.static(path.join(__dirname, 'html')));
 app.use(express.static(path.join(__dirname, 'updatetask')));
 app.use(express.static(path.join(__dirname, 'deletetask')));
 //dasfads
